@@ -8,6 +8,17 @@
 
 import UIKit
 
+var monthNow: Int {
+    return Calendar.current.component(.month, from: Date()) - 1
+}
+var yearNow: Int {
+    return Calendar.current.component(.year, from: Date())
+}
+var dayNow: Int {
+    return Calendar.current.component(.day, from: Date())
+}
+
+
 class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     @IBOutlet weak var todayButton: UIButton!
     @IBOutlet weak var collectionView: UICollectionView!
@@ -23,15 +34,22 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        updateMonth()
-        
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .rewind, target: self, action: #selector(navButtonPressed))
         navigationItem.leftBarButtonItem?.tag = 1
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .fastForward, target: self, action: #selector(navButtonPressed))
         navigationItem.rightBarButtonItem?.tag = 2
+        
+        updateMonth()
     }
     
-
+    @IBAction func todayButtonPressed(_ sender: Any) {
+        currentYear = yearNow
+        currentMonth = monthNow
+        updateMonth()
+    }
+    
+    // MARK: Custom Methods
+    
     func updateMonth(withChange change: Int = 0) {
         currentMonth += change
         if currentMonth < 0 {
@@ -42,10 +60,8 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
             currentYear += 1
         }
         
-        // Cater for leap years
-        if currentMonth + 1 == 2 {
-            numberOfDaysInMonth[1] = currentYear % 4 == 0 ? 29 : 28
-        }
+        // Handle leap years
+        if currentMonth + 1 == 2 { numberOfDaysInMonth[1] = currentYear % 4 == 0 ? 29 : 28 }
         
         todayButton.isEnabled = !(currentMonth == monthNow && currentYear == yearNow)
         
@@ -74,10 +90,8 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         return date!.firstDayOfTheMonth.weekday
     }
     
-    @IBAction func todayButtonPressed(_ sender: Any) {
-        currentYear = yearNow
-        currentMonth = monthNow
-        updateMonth()
+    func isToday(forDay day: Int, month: Int, year: Int) -> Bool {
+        return year == yearNow && month == monthNow && day == dayNow
     }
     
     // MARK: Collection View Setup
@@ -89,22 +103,13 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! DateCell
         collectionView.deselectItem(at: indexPath, animated: false)
+        let cellDay = indexPath.item - firstWeekDayOfMonth + 2
+        cell.setDate(cellDay)
         
-        if indexPath.item <= firstWeekDayOfMonth - 2 {
-            cell.isHidden=true
+        if isToday(forDay: cellDay, month: currentMonth, year: currentYear) {
+            cell.setTodayStyle()
         } else {
-            let calcDate = indexPath.item - firstWeekDayOfMonth + 2
-            cell.isHidden = false
-            cell.dateLabel.text = String(calcDate)
-            cell.layer.cornerRadius = 5
-            cell.setDeselectedStyle()
-            
-            if currentYear == yearNow && currentMonth == monthNow && indexPath.item == dayNow {
-                cell.setTodayStyle()
-            } else {
-                cell.setNotTodayStyle()
-            }
-            
+            cell.setNotTodayStyle()
         }
 
         return cell
@@ -135,17 +140,6 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     }
 }
 
-
-
-var monthNow: Int {
-    return Calendar.current.component(.month, from: Date()) - 1
-}
-var yearNow: Int {
-    return Calendar.current.component(.year, from: Date())
-}
-var dayNow: Int {
-    return Calendar.current.component(.day, from: Date())
-}
 
 extension Date {
     var weekday: Int {
