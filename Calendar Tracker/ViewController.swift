@@ -75,11 +75,6 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         
         title = monthNames[currentMonth] + " " + String(currentYear)
         firstWeekDayOfMonth = getFirstWeekDay(ofMonth: currentMonth + 1, inYear: currentYear)
-        if let selectedCells = collectionView.indexPathsForSelectedItems {
-            for cell in selectedCells {
-                collectionView.deselectItem(at: cell, animated: false)
-            }
-        }
         collectionView.reloadData()
     }
     
