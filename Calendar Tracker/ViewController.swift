@@ -47,6 +47,14 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         currentMonth = monthNow
         updateMonth()
     }
+    @IBAction func swipeRight(_ sender: UISwipeGestureRecognizer) {
+        updateMonth(withChange: -1)
+    }
+    
+    @IBAction func swipeLeft(_ sender: UISwipeGestureRecognizer) {
+        updateMonth(withChange: 1)
+    }
+    
     
     // MARK: Custom Methods
     
@@ -90,7 +98,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         return date!.firstDayOfTheMonth.weekday
     }
     
-    func isToday(forDay day: Int, month: Int, year: Int) -> Bool {
+    func isToday(day: Int, month: Int, year: Int) -> Bool {
         return year == yearNow && month == monthNow && day == dayNow
     }
     
@@ -106,7 +114,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         let cellDay = indexPath.item - firstWeekDayOfMonth + 2
         cell.setDate(cellDay)
         
-        if isToday(forDay: cellDay, month: currentMonth, year: currentYear) {
+        if isToday(day: cellDay, month: currentMonth, year: currentYear) {
             cell.setTodayStyle()
         } else {
             cell.setNotTodayStyle()

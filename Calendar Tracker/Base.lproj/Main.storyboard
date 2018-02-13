@@ -19,47 +19,47 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="EPD-si-IR7">
-                                <rect key="frame" x="16" y="104" width="343" height="30"/>
+                                <rect key="frame" x="16.333333333333343" y="104" width="343" height="30"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sun" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aOH-Bw-lOi">
                                         <rect key="frame" x="0.0" y="0.0" width="49" height="30"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mon" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gsz-fQ-3VY">
                                         <rect key="frame" x="49" y="0.0" width="49" height="30"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tue" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Exj-ec-k06">
                                         <rect key="frame" x="98" y="0.0" width="49" height="30"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wed" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JbM-9g-TFZ">
                                         <rect key="frame" x="147" y="0.0" width="49" height="30"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thu" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tMM-fk-Fa7">
                                         <rect key="frame" x="196" y="0.0" width="49" height="30"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fri" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kkl-n3-MNG">
                                         <rect key="frame" x="245" y="0.0" width="49" height="30"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sat" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qkl-NL-9oV">
                                         <rect key="frame" x="294" y="0.0" width="49" height="30"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -121,17 +121,22 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="EPD-si-IR7" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="16" id="3Y7-Rb-hg5"/>
                             <constraint firstItem="ddp-ll-dDp" firstAttribute="top" secondItem="EPD-si-IR7" secondAttribute="bottom" constant="24" id="6SI-mY-7fm"/>
-                            <constraint firstItem="EPD-si-IR7" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="AZe-ZE-6bC"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="EPD-si-IR7" secondAttribute="trailing" constant="16" id="M7w-QP-yOw"/>
                             <constraint firstItem="ddp-ll-dDp" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="ars-JW-gLP"/>
                             <constraint firstItem="F7p-7b-H8g" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="cVl-Yg-ag7"/>
+                            <constraint firstItem="EPD-si-IR7" firstAttribute="width" secondItem="ddp-ll-dDp" secondAttribute="width" id="d7m-5T-LEr"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ddp-ll-dDp" secondAttribute="trailing" constant="16" id="dee-dx-gX6"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="F7p-7b-H8g" secondAttribute="bottom" id="etb-jg-dlH"/>
+                            <constraint firstItem="EPD-si-IR7" firstAttribute="centerX" secondItem="ddp-ll-dDp" secondAttribute="centerX" id="hmL-dD-Jdp"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="HVo-3d-qep" appends="YES" id="Xdg-hy-K0r"/>
+                            <outletCollection property="gestureRecognizers" destination="jXS-fO-SBV" appends="YES" id="MGI-Ib-VhA"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" id="2L7-9u-dc2"/>
                     <connections>
@@ -140,6 +145,16 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="right" id="HVo-3d-qep">
+                    <connections>
+                        <action selector="swipeRight:" destination="BYZ-38-t0r" id="4DO-5V-Ayh"/>
+                    </connections>
+                </swipeGestureRecognizer>
+                <swipeGestureRecognizer direction="left" id="jXS-fO-SBV">
+                    <connections>
+                        <action selector="swipeLeft:" destination="BYZ-38-t0r" id="I12-z3-3pe"/>
+                    </connections>
+                </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="479.19999999999999" y="133.74384236453201"/>
         </scene>
