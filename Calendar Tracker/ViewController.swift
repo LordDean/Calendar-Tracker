@@ -51,6 +51,11 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         
         title = monthNames[currentMonth] + " " + String(currentYear)
         firstWeekDayOfMonth = getFirstWeekDay(ofMonth: currentMonth + 1, inYear: currentYear)
+        if let selectedCells = collectionView.indexPathsForSelectedItems {
+            for cell in selectedCells {
+                collectionView.deselectItem(at: cell, animated: false)
+            }
+        }
         collectionView.reloadData()
     }
     
@@ -75,22 +80,44 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         updateMonth()
     }
     
+    // MARK: Collection View Setup
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return numberOfDaysInMonth[currentMonth] + firstWeekDayOfMonth - 1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! DateCell
+        collectionView.deselectItem(at: indexPath, animated: false)
         
-        if indexPath.row <= firstWeekDayOfMonth - 2 {
+        if indexPath.item <= firstWeekDayOfMonth - 2 {
             cell.isHidden=true
         } else {
-            let calcDate = indexPath.row - firstWeekDayOfMonth + 2
+            let calcDate = indexPath.item - firstWeekDayOfMonth + 2
             cell.isHidden = false
             cell.dateLabel.text = String(calcDate)
+            cell.layer.cornerRadius = 5
+            cell.setDeselectedStyle()
+            
+            if currentYear == yearNow && currentMonth == monthNow && indexPath.item == dayNow {
+                cell.setTodayStyle()
+            } else {
+                cell.setNotTodayStyle()
+            }
+            
         }
-        
+
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let cell = collectionView.cellForItem(at: indexPath) as! DateCell
+        cell.setSelectedStyle()
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        let cell = collectionView.cellForItem(at: indexPath) as! DateCell
+        cell.setDeselectedStyle()
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -115,6 +142,9 @@ var monthNow: Int {
 }
 var yearNow: Int {
     return Calendar.current.component(.year, from: Date())
+}
+var dayNow: Int {
+    return Calendar.current.component(.day, from: Date())
 }
 
 extension Date {
