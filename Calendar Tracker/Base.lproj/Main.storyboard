@@ -128,6 +128,9 @@
                                         <state key="normal" title="Present">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="presentButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="los-Q8-Rhg"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mLK-v2-KfJ" customClass="AttendanceButton" customModule="Calendar_Tracker" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="69" width="343" height="61"/>
@@ -135,6 +138,9 @@
                                         <state key="normal" title="Half Day">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="halfDayButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="WqZ-oy-fpe"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OhB-rD-6Np" customClass="AttendanceButton" customModule="Calendar_Tracker" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="138" width="343" height="61"/>
@@ -142,6 +148,9 @@
                                         <state key="normal" title="Absent">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="absentButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Bev-BS-Hs8"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>

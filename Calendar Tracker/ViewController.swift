@@ -65,6 +65,18 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         updateMonth(withChange: 1)
     }
     
+    @IBAction func presentButtonPressed(_ sender: AttendanceButton) {
+        sender.makeSelectable(isChosen: true)
+    }
+    
+    @IBAction func halfDayButtonPressed(_ sender: AttendanceButton) {
+        sender.makeSelectable(isChosen: true)
+    }
+    
+    @IBAction func absentButtonPressed(_ sender: AttendanceButton) {
+        sender.makeSelectable(isChosen: true)
+    }
+    
     @objc func navButtonPressed(_ sender: UIBarButtonItem) {
         if sender.tag == 1 {
             updateMonth(withChange: -1)

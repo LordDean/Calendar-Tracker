@@ -10,7 +10,8 @@ import UIKit
 
 class AttendanceButton: UIButton {
     
-    var colour: UIColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+    var colour = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+    private let disabledColour = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -19,6 +20,7 @@ class AttendanceButton: UIButton {
     
 
     func makeSelectable(isChosen: Bool = false) {
+        self.isEnabled = true
         if isChosen {
             self.layer.borderWidth = 0
             self.backgroundColor = colour
@@ -32,9 +34,11 @@ class AttendanceButton: UIButton {
     }
     
     func makeUnselectable() {
-        self.layer.borderWidth = 0
-        self.backgroundColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
-        self.setTitleColor(.white, for: .disabled)
+        self.isEnabled = false
+        self.layer.borderWidth = 2
+        self.layer.borderColor = disabledColour.cgColor
+        self.setTitleColor(disabledColour, for: .disabled)
+        self.backgroundColor = .white
     }
     
 }
