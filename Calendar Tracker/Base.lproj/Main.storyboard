@@ -18,7 +18,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="EPD-si-IR7">
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="EPD-si-IR7" userLabel="Days of the week">
                                 <rect key="frame" x="16.333333333333343" y="104" width="343" height="30"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sun" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aOH-Bw-lOi">
@@ -68,7 +68,7 @@
                                     <constraint firstAttribute="height" constant="30" id="6MF-R7-RXQ"/>
                                 </constraints>
                             </stackView>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ddp-ll-dDp">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ddp-ll-dDp" userLabel="Month Calendar">
                                 <rect key="frame" x="16" y="158" width="343" height="343"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -119,13 +119,43 @@
                                     <action selector="todayButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="GtN-Mm-we3"/>
                                 </connections>
                             </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="eZN-eB-aP0" userLabel="Attendance Buttons">
+                                <rect key="frame" x="16" y="525" width="343" height="199"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UJN-dC-Ykv" customClass="AttendanceButton" customModule="Calendar_Tracker" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="343" height="61"/>
+                                        <color key="backgroundColor" red="0.2196078598" green="0.55294120309999995" blue="0.074509806930000005" alpha="1" colorSpace="deviceRGB"/>
+                                        <state key="normal" title="Present">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mLK-v2-KfJ" customClass="AttendanceButton" customModule="Calendar_Tracker" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="69" width="343" height="61"/>
+                                        <color key="backgroundColor" red="0.87450987099999999" green="0.61123612791538462" blue="0.10588236149999999" alpha="1" colorSpace="deviceRGB"/>
+                                        <state key="normal" title="Half Day">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OhB-rD-6Np" customClass="AttendanceButton" customModule="Calendar_Tracker" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="138" width="343" height="61"/>
+                                        <color key="backgroundColor" red="0.73333334920000004" green="0.03529411927" blue="0.058823533359999999" alpha="1" colorSpace="deviceRGB"/>
+                                        <state key="normal" title="Absent">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <gestureRecognizers/>
                         <constraints>
+                            <constraint firstItem="eZN-eB-aP0" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="35e-vc-xzq"/>
                             <constraint firstItem="EPD-si-IR7" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="16" id="3Y7-Rb-hg5"/>
                             <constraint firstItem="ddp-ll-dDp" firstAttribute="top" secondItem="EPD-si-IR7" secondAttribute="bottom" constant="24" id="6SI-mY-7fm"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="eZN-eB-aP0" secondAttribute="trailing" constant="16" id="BF5-ZZ-0bZ"/>
+                            <constraint firstItem="eZN-eB-aP0" firstAttribute="top" secondItem="ddp-ll-dDp" secondAttribute="bottom" constant="24" id="abR-nj-ChD"/>
                             <constraint firstItem="ddp-ll-dDp" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="ars-JW-gLP"/>
+                            <constraint firstItem="F7p-7b-H8g" firstAttribute="top" secondItem="eZN-eB-aP0" secondAttribute="bottom" constant="24" id="bLk-nB-17l"/>
                             <constraint firstItem="F7p-7b-H8g" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="cVl-Yg-ag7"/>
                             <constraint firstItem="EPD-si-IR7" firstAttribute="width" secondItem="ddp-ll-dDp" secondAttribute="width" id="d7m-5T-LEr"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ddp-ll-dDp" secondAttribute="trailing" constant="16" id="dee-dx-gX6"/>
@@ -140,7 +170,10 @@
                     </view>
                     <navigationItem key="navigationItem" id="2L7-9u-dc2"/>
                     <connections>
+                        <outlet property="absentButton" destination="OhB-rD-6Np" id="wMj-1C-I5t"/>
                         <outlet property="collectionView" destination="ddp-ll-dDp" id="8Mk-Nr-KWv"/>
+                        <outlet property="halfDayButton" destination="mLK-v2-KfJ" id="hJk-c4-b4m"/>
+                        <outlet property="presentButton" destination="UJN-dC-Ykv" id="3wg-CH-Uo0"/>
                         <outlet property="todayButton" destination="F7p-7b-H8g" id="oSf-Lx-fZD"/>
                     </connections>
                 </viewController>

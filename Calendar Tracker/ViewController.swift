@@ -22,6 +22,10 @@ var dayNow: Int {
 class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     @IBOutlet weak var todayButton: UIButton!
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var presentButton: AttendanceButton!
+    @IBOutlet weak var halfDayButton: AttendanceButton!
+    @IBOutlet weak var absentButton: AttendanceButton!
+    
     
     let monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
     var numberOfDaysInMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
@@ -34,10 +38,16 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .rewind, target: self, action: #selector(navButtonPressed))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "❮", style: .plain, target: self, action: #selector(navButtonPressed))
         navigationItem.leftBarButtonItem?.tag = 1
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .fastForward, target: self, action: #selector(navButtonPressed))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "❯", style: .plain, target: self, action: #selector(navButtonPressed))
         navigationItem.rightBarButtonItem?.tag = 2
+        
+        presentButton.colour = #colorLiteral(red: 0, green: 0.5603182912, blue: 0, alpha: 1)
+        halfDayButton.colour = #colorLiteral(red: 0.874509871, green: 0.6112361279, blue: 0.1058823615, alpha: 1)
+        absentButton.colour = #colorLiteral(red: 0.7333333492, green: 0.03529411927, blue: 0.05882353336, alpha: 1)
+        
+        makeButtonsSelectable(false)
         
         updateMonth()
     }
@@ -53,6 +63,14 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     @IBAction func swipeLeft(_ sender: UISwipeGestureRecognizer) {
         updateMonth(withChange: 1)
+    }
+    
+    @objc func navButtonPressed(_ sender: UIBarButtonItem) {
+        if sender.tag == 1 {
+            updateMonth(withChange: -1)
+        } else {
+            updateMonth(withChange: 1)
+        }
     }
     
     
@@ -76,14 +94,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         title = monthNames[currentMonth] + " " + String(currentYear)
         firstWeekDayOfMonth = getFirstWeekDay(ofMonth: currentMonth + 1, inYear: currentYear)
         collectionView.reloadData()
-    }
-    
-    @objc func navButtonPressed(_ sender: UIBarButtonItem) {
-        if sender.tag == 1 {
-            updateMonth(withChange: -1)
-        } else {
-            updateMonth(withChange: 1)
-        }
+        makeButtonsSelectable(false)
     }
     
     func getFirstWeekDay(ofMonth month: Int, inYear year: Int) -> Int {
@@ -95,6 +106,19 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     func isToday(day: Int, month: Int, year: Int) -> Bool {
         return year == yearNow && month == monthNow && day == dayNow
+    }
+    
+    func makeButtonsSelectable(_ selectable: Bool) {
+        if selectable {
+            presentButton.makeSelectable()
+            halfDayButton.makeSelectable()
+            absentButton.makeSelectable()
+        } else {
+            presentButton.makeUnselectable()
+            halfDayButton.makeUnselectable()
+            absentButton.makeUnselectable()
+        }
+        
     }
     
     // MARK: Collection View Setup
@@ -121,11 +145,13 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath) as! DateCell
         cell.setSelectedStyle()
+        makeButtonsSelectable(true)
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath) as! DateCell
         cell.setDeselectedStyle()
+        makeButtonsSelectable(false)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
