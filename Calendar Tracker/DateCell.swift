@@ -10,34 +10,45 @@ import UIKit
 
 class DateCell: UICollectionViewCell {
     @IBOutlet weak private var dateLabel: UILabel!
+    static var selectedColour = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
     
-    private var isToday = false
+    var chosenColour: UIColor?
+    
+    enum CellState {
+        case normal, selected, disabled
+    }
+    
+    var cellState: CellState = .normal {
+        didSet {
+            switch cellState {
+            case .disabled:
+                self.isUserInteractionEnabled = false
+                self.dateLabel.textColor = .gray
+                self.backgroundColor = .clear
+                self.layer.borderWidth = 0
+            case .normal:
+                self.isUserInteractionEnabled = true
+                self.layer.borderWidth = 0
+                if let colour = chosenColour {
+                    self.backgroundColor = colour
+                    self.dateLabel.textColor = .white
+                } else {
+                    self.dateLabel.textColor = .black
+                    self.backgroundColor = .clear
+                }
+            case .selected:
+                self.isUserInteractionEnabled = true
+                self.dateLabel.textColor = .white
+                self.backgroundColor = DateCell.selectedColour
+                self.layer.borderWidth = 0
+            }
+        }
+    }
+    
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         self.layer.cornerRadius = 5
-    }
-    
-    
-    func setSelectedStyle() {
-        self.backgroundColor = self.isToday ? #colorLiteral(red: 0, green: 0.4784313725, blue: 1, alpha: 1) : .black
-        self.dateLabel.textColor = .white
-    }
-    
-    func setDeselectedStyle() {
-        self.backgroundColor = .white
-        self.dateLabel.textColor = .black
-    }
-    
-    func setTodayStyle() {
-        self.layer.borderWidth = 2
-        self.layer.borderColor = #colorLiteral(red: 0, green: 0.4784313725, blue: 1, alpha: 1)
-        self.isToday = true
-    }
-    
-    func setNotTodayStyle() {
-        self.layer.borderWidth = 0
-        self.isToday = false
     }
     
     func setDate(_ date: Int) {
@@ -45,7 +56,7 @@ class DateCell: UICollectionViewCell {
             self.isHidden = true
         } else {
             self.isHidden = false
-            self.setDeselectedStyle()
+            self.cellState = .normal
             self.dateLabel.text = String(date)
         }
     }
